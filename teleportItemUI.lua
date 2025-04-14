@@ -104,7 +104,7 @@ local function createUI()
     titleLabel.Size = UDim2.new(0, 230, 0, 40)
     titleLabel.Position = UDim2.new(0.5, -115, 0, 10)
     titleLabel.BackgroundTransparency = 1
-    titleLabel.Text = "item Teleport"
+    titleLabel.Text = "item Teleport from 어무니"
     titleLabel.TextColor3 = Color3.fromRGB(0, 170, 255)
     titleLabel.TextScaled = true
     titleLabel.Parent = frame
