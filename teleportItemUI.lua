@@ -172,7 +172,7 @@ local function createUI()
         isTeleportActive = not isTeleportActive
         autoGetButton.Text = isTeleportActive and "Auto Get Item ON" or "Auto Get Item OFF"
         autoGetButton.BackgroundColor3 = isTeleportActive and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
-        statusLabel.Text = isTeleportActive and "상태: 이동 중" or "상태: 대기 중"
+        statusLabel.Text = isTeleportActive and "Status: On the move" or "Condition : Waiting"
 
         if isTeleportActive then
             -- 텔레포트 및 아이템 수집 루프
@@ -181,21 +181,21 @@ local function createUI()
                     if not isTeleportActive then break end -- 상태 체크로 루프 종료
                     local closestItem, distance = findClosestItem()
                     if closestItem then
-                        print("가장 가까운 아이템: ", closestItem:GetFullName(), " 거리: ", distance)
+                        print("Nearest item: ", closestItem:GetFullName(), " Distance: ", distance)
                         local targetPos
                         if closestItem.Parent and closestItem.Parent:IsA("BasePart") then
                             targetPos = closestItem.Parent.Position
                         elseif closestItem.Parent.Parent and closestItem.Parent.Parent:IsA("BasePart") then
                             targetPos = closestItem.Parent.Parent.Position
                         else
-                            warn("아이템 위치를 찾을 수 없습니다: ", closestItem:GetFullName())
+                            warn("Item location not found: ", closestItem:GetFullName())
                             break
                         end
                         teleportTo(targetPos)
                         wait(0.1)
                         triggerPrompt(closestItem)
                     else
-                        print("가까운 아이템이 없습니다.")
+                        print("There are no items close to you")
 						wait(1)
                     end
                     wait(0.5)
@@ -203,7 +203,7 @@ local function createUI()
                 isTeleportActive = false
                 autoGetButton.Text = "Auto Get Item OFF"
                 autoGetButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-                statusLabel.Text = "상태: 대기 중"
+                statusLabel.Text = "Status: Waiting"
             end)
         end
     end)
